@@ -13,7 +13,7 @@ VALUES (111, 'steve', 'jobs', 'human', true),
        (444, 'sebulba', null, null, false),
        (555, 'aldar', 'bedoo', 'glymphid', false),
        (777, 'iyk', 'aloh', 'glymphid', true),
-       (999, 'Boek', 'Terrance', null , false),
+       (999, 'Huig', 'Terrance', null , false),
        (888, 'mueg', 'burngue', 'nuknog', false),
        (000, 'Michael', 'Scarn', 'prisonian', true),
        (333, 'ark', 'roose', 'nuknog', false); 
