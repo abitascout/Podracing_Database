@@ -1,6 +1,3 @@
-
-
-
 DROP SCHEMA IF EXISTS podracing;
 CREATE DATABASE podracing;
 USE Podracing;
