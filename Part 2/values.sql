@@ -4,7 +4,7 @@ USE podracing;
 
 
 -- BEING   (id - int, fname, lname, species, is_slave - bool)
-INSERT INTO being
+INSERT INTO BEING
 VALUES (111, 'steve', 'jobs', 'human', true),
        (222, 'bill', 'gates', 'human', false),
        (333, 'ark', 'roose', 'nuknog', false),
@@ -26,7 +26,7 @@ VALUES('Tatooine', '10 billion', 'Mos Espa, Mos Eisley, Anchor Head'),
 
 
 -- RACER (racer_id - int, b_id - int)
-INSERT INTO racer
+INSERT INTO RACER
 VALUES(45, 666),
       (56, 000),
       (69, 444),
@@ -34,7 +34,7 @@ VALUES(45, 666),
 
 
 -- VIEWER (b_id - int, ticket_type, race_name) 
-INSERT INTO viewer
+INSERT INTO VIEWER
 VALUES(333, 'ROW 3B', 'Aldera 500'), 
       (555, 'ROW 4B', 'Piston cup'),
       (888, 'ROW 4C', 'Tour de Tatooine'),
@@ -44,26 +44,26 @@ VALUES(333, 'ROW 3B', 'Aldera 500'),
       (777, 'ROW 1A', 'Final Showdown Pt. 2');
 
 -- BET (v_bid - int, r_bid - int, bet_type, amount)
-INSERT INTO bet
-VALUES(888, 56,'freedom','666 freedom'),
-      (555, 72, 'freedom','000 freedom'),
-      (777, 69, 'Money', '1000 credits');
+INSERT INTO BET
+VALUES(888, 000,'freedom','666 freedom'),
+      (555, 999, 'freedom','000 freedom'),
+      (777, 444, 'Money', '1000 credits');
 
 
 -- POD (engine_type, vin - int, pod_weight int, top_seed - int, Modified_flag - bool, racer_bid - int)
-INSERT INTO pod
-VALUES('Radon-Ulzer 620C racing engines 2', 6969, 1 ,947 ,true , 666 ),
+INSERT INTO POD
+VALUES('Radon-Ulzer 620C racing engines 2', 6969, 1 ,947 ,true , 666),
       ('Boulton & Watt 1788', 42069, 200, 730, false, 000),
-      ('Thomas Tank 1996 500HP M63', 9000, 105, 1024, false, 000);
+      ('Thomas Tank 1996 500HP M63', 9000, 105, 1024, false, 444);
 
 -- RACE (stadium_name, city, race_name, pname, rdate) * change order so that city and planet_name
-INSERT INTO race
-VALUES('Death Valley', 'Aldera', 'Aldera 500', 'Alderaan', 2020-01-01),
-      ('Jabba"s Palace', 'Desert', 'Final Showdown Pt. 2', 'Tatooine', 1010-12-01),
-      ('Mos Espa Grand Arena', 'Mos Espa', 'Tour de Tatooine', 'Tatooine', 2021 -09-26);
+INSERT INTO RACE
+VALUES('Death Valley', 'Aldera', 'Aldera 500', 'Alderaan', '2020-01-01'),
+      ('Jabba"s Palace', 'Desert', 'Final Showdown Pt. 2', 'Tatooine', '1010-12-01'),
+      ('Mos Espa Grand Arena', 'Mos Espa', 'Tour de Tatooine', 'Tatooine', '2021-09-26');
 
 -- is_from (being_id - int, pname)
-INSERT INTO is_from
+INSERT INTO IS_FROM
 VALUES (111, 'Alderaan'),
        (555, 'Tatooine'),
        (888, 'Alderaan'),
@@ -73,12 +73,10 @@ VALUES (111, 'Alderaan'),
 
 
 -- is_in  (vin - int, racer_bid - int, race_name)
-INSERT INTO is_in
-VALUES (6969, 666, 'Tour de Tatooine'),
-       (42069, 444, 'Tour de Tatooine'),
-       (9000, 777, 'Final Showdown Pt. 2'),
-       (6969, 555, 'Aldera 500'),
-       (42069, 000, 'Piston Cup');
+INSERT INTO IS_IN
+VALUES (6969, 666, 'Aldera 500'),
+       (42069, 000, 'Tour de Tatooine'),
+       (9000, 444, 'Final Showdown Pt. 2');
 
 -- DROID   (racer_bid - int, droid_number - int, droid_type)
 INSERT INTO DROID 
@@ -98,6 +96,5 @@ VALUES ('Mos Espa', 'Tatooine'),
        ('Anchor Head', 'Tatooine'),
        ('Terraium City', 'Alderaan'),
        ('Aldera', 'Alderaan'),
-       ('Imperial City', 'Coruscant'),
        ('Imperial City', 'Coruscant'),
        ('Pixelito', 'Malastare');
