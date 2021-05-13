@@ -100,6 +100,6 @@ WHERE V.Bid = D.racer_bid;
 
 -- 1 schema modifications(ALTER)
 -- change the DROID NUMBER datatype from int to varchar 
-ALTER TABLE `DROID`CHANGE COLUMN  `Droid Number` `Droid Number` varchar(250) NOT NULL;
+ALTER TABLE `DROID`CHANGE COLUMN  `Droid_Number` `Droid_Number` varchar(250) NOT NULL;
 
 
