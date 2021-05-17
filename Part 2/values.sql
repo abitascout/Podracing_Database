@@ -19,10 +19,10 @@ VALUES (111, 'steve', 'jobs', 'human', true),
         
 -- PLANET (planet_name, planet_population, cities)
 INSERT INTO PLANET
-VALUES('Tatooine', '10 billion', 'Mos Espa, Mos Eisley, Anchor Head'),
-      ('Alderaan', '20 billion', 'Aldera, Terraium City'),
-      ('Malastare', '1 million',  'Pixelito'),
-      ('Coruscant', '10 trillion', 'Imperial City, Galactic City');
+VALUES('Tatooine', '10 billion'),
+      ('Alderaan', '20 billion'),
+      ('Malastare', '1 million'),
+      ('Coruscant', '10 trillion');
 
 
 -- RACER (racer_id - int, b_id - int)

@@ -27,7 +27,6 @@ CREATE TABLE VIEWER(
         Bid INTEGER NOT NULL,
         Ticket_type VARCHAR(45) NOT NULL,
         Race_Name VARCHAR(45),
-        /* Viewercol VARCHAR(45), -- not in eer diagram/schema*/
     CONSTRAINT viewer_pk
         PRIMARY KEY(Bid)
 );
@@ -46,7 +45,7 @@ DROP TABLE IF EXISTS POD;
 CREATE TABLE POD(
     Engine_type     VARCHAR(45),
     Vin             INTEGER NOT NULL,
-    Pod_weight      INTEGER,   /* changed from weight because weight is a keyword*/
+    Pod_weight      INTEGER,   
     Top_speed       INTEGER,
     Modified_flag   BOOLEAN,
     Racer_Bid       INTEGER,
@@ -69,7 +68,6 @@ DROP TABLE IF EXISTS PLANET;
 CREATE TABLE PLANET(
     Planet_Name         VARCHAR(45) NOT NULL,   /* changed from Name to Planet_name */
     Planet_population   VARCHAR(45),            /* changed from Population to Planet_population */
-    Cities              VARCHAR(45),
     CONSTRAINT Planet_unique
         PRIMARY KEY(Planet_Name)
 );
