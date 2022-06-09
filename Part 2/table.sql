@@ -1,12 +1,9 @@
-
-
-
 DROP SCHEMA IF EXISTS podracing;
 CREATE DATABASE podracing;
 USE Podracing;
 
-DROP TABLE IF EXISTS being;
-CREATE TABLE being(
+DROP TABLE IF EXISTS BEING;
+CREATE TABLE BEING(
         Id INTEGER NOT NULL,
         Fname VARCHAR(45),
         Lname VARCHAR(45), 
@@ -16,8 +13,8 @@ CREATE TABLE being(
         PRIMARY KEY (Id)
 );
 
-DROP TABLE IF EXISTS racer;
-CREATE TABLE racer(
+DROP TABLE IF EXISTS RACER;
+CREATE TABLE RACER(
         Racer_id INTEGER NOT NULL,
         Bid INTEGER NOT NULL,
     CONSTRAINT racer_pk
@@ -25,18 +22,17 @@ CREATE TABLE racer(
 );
 		
 
-DROP TABLE IF EXISTS viewer;
-CREATE TABLE viewer(
+DROP TABLE IF EXISTS VIEWER;
+CREATE TABLE VIEWER(
         Bid INTEGER NOT NULL,
         Ticket_type VARCHAR(45) NOT NULL,
-        Race_name VARCHAR(45),
-        /* Viewercol VARCHAR(45), -- not in eer diagram/schema*/
+        Race_Name VARCHAR(45),
     CONSTRAINT viewer_pk
         PRIMARY KEY(Bid)
 );
 
-DROP TABLE IF EXISTS bet;
-CREATE TABLE bet(
+DROP TABLE IF EXISTS BET;
+CREATE TABLE BET(
     V_bid INTEGER NOT NULL,
     R_bid INTEGER NOT NULL,
     Bet_type VARCHAR(45) NOT NULL,
@@ -45,11 +41,11 @@ CREATE TABLE bet(
         PRIMARY KEY(V_bid, R_bid)
 ); 
 
-DROP TABLE IF EXISTS pod;
-CREATE TABLE pod(
+DROP TABLE IF EXISTS POD;
+CREATE TABLE POD(
     Engine_type     VARCHAR(45),
     Vin             INTEGER NOT NULL,
-    Pod_weight      INTEGER,   /* changed from weight because weight is a keyword*/
+    Pod_weight      INTEGER,   
     Top_speed       INTEGER,
     Modified_flag   BOOLEAN,
     Racer_Bid       INTEGER,
@@ -57,36 +53,35 @@ CREATE TABLE pod(
         PRIMARY KEY(Vin)
 );
 
-DROP TABLE IF EXISTS race;
-CREATE TABLE race(
+DROP TABLE IF EXISTS RACE;
+CREATE TABLE RACE(
     Stadium_name    VARCHAR(45) NOT NULL,
     City            VARCHAR(45) NOT NULL,
-    Race_name       VARCHAR(45) NOT NULL,
+    Race_Name       VARCHAR(45) NOT NULL,
     Pname           VARCHAR(45) NOT NULL, 
     Rdate           DATE NOT NULL,
     CONSTRAINT Race_unique
         PRIMARY KEY(Race_Name)
 );
 
-DROP TABLE IF EXISTS planet;
-CREATE TABLE planet(
-    Planet_name         VARCHAR(45) NOT NULL,   /* changed from Name to Planet_name */
+DROP TABLE IF EXISTS PLANET;
+CREATE TABLE PLANET(
+    Planet_Name         VARCHAR(45) NOT NULL,   /* changed from Name to Planet_name */
     Planet_population   VARCHAR(45),            /* changed from Population to Planet_population */
-    Cities              VARCHAR(45),
     CONSTRAINT Planet_unique
         PRIMARY KEY(Planet_Name)
 );
 
-DROP TABLE IF EXISTS cities;
-CREATE TABLE cities(
+DROP TABLE IF EXISTS CITIES;
+CREATE TABLE CITIES(
     City            VARCHAR(45) NOT NULL,
-    Planet_name     VARCHAR(45) NOT NULL,
+    Planet_Name     VARCHAR(45) NOT NULL,
     CONSTRAINT Cities_pk
         PRIMARY KEY(City, Planet_Name)
 );
 
-DROP TABLE IF EXISTS droid;
-CREATE TABLE droid(
+DROP TABLE IF EXISTS DROID;
+CREATE TABLE DROID(
     Racer_Bid       INTEGER,
     Droid_number    INTEGER,
     Droid_type      VARCHAR(45),
@@ -94,30 +89,30 @@ CREATE TABLE droid(
         PRIMARY KEY (Racer_Bid, Droid_number)
 );
 
-DROP TABLE IF EXISTS is_in;
-CREATE TABLE is_in(
+DROP TABLE IF EXISTS IS_IN;
+CREATE TABLE IS_IN(
     Vin             INTEGER,
     Racer_Bid       INTEGER,
-    Race_name       VARCHAR(45),
+    Race_Name       VARCHAR(45),
 
-    CONSTRAINT is_in_pk
-        PRIMARY KEY (Vin, Racer_Bid, Race_name),
+    CONSTRAINT Is_in_pk
+        PRIMARY KEY (Vin, Racer_Bid, Race_Name),
     CONSTRAINT Vin_super_fk
         FOREIGN KEY (Vin) REFERENCES POD(Vin)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE,
     CONSTRAINT Racer_Bid_super_fk
-        FOREIGN KEY (Racer_Bid) REFERENCES Racer(Bid)
-        ON DELETE RESTRICT 
+        FOREIGN KEY (Racer_Bid) REFERENCES RACER(Bid)
+        ON DELETE CASCADE 
         ON UPDATE CASCADE,
     CONSTRAINT Race_name_fk
-        FOREIGN KEY (Race_name) REFERENCES Race(Race_Name)
-        ON DELETE RESTRICT
+        FOREIGN KEY (Race_Name) REFERENCES RACE(Race_Name)
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS is_from;
-CREATE TABLE is_from(
+DROP TABLE IF EXISTS IS_FROM;
+CREATE TABLE IS_FROM(
     Being_id  INTEGER,
     Pname     VARCHAR(45),
     CONSTRAINT is_from_pk
@@ -132,49 +127,49 @@ CREATE TABLE is_from(
 
 
 /* Defining refirential integrity constraints (foreign keys) */
-ALTER TABLE racer
+ALTER TABLE RACER
 	ADD CONSTRAINT Bid_super_fk
-		FOREIGN KEY (Bid) REFERENCES Being(Id)
+		FOREIGN KEY (Bid) REFERENCES BEING(Id)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE viewer
+ALTER TABLE VIEWER
 	ADD CONSTRAINT Viewer_super_fk
-		FOREIGN KEY (Bid) REFERENCES Being(Id)
+		FOREIGN KEY (Bid) REFERENCES BEING(Id)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE bet
+ALTER TABLE BET
 	ADD CONSTRAINT Bet_V_fk
-		FOREIGN KEY (V_Bid) REFERENCES Viewer(Bid)
+		FOREIGN KEY (V_Bid) REFERENCES VIEWER(Bid)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE,
     ADD CONSTRAINT Bet_R_fk
-		FOREIGN KEY (R_Bid) REFERENCES Racer(Bid)
+		FOREIGN KEY (R_Bid) REFERENCES RACER(Bid)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE pod
+ALTER TABLE POD
 	ADD CONSTRAINT Pod_super_fk
-		FOREIGN KEY (Racer_Bid) REFERENCES Racer(Bid)
+		FOREIGN KEY (Racer_Bid) REFERENCES RACER(Bid)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE race
+ALTER TABLE RACE
 	ADD CONSTRAINT race_super_fk
-		FOREIGN KEY (Pname) REFERENCES Planet(Planet_Name)
+		FOREIGN KEY (Pname) REFERENCES PLANET(Planet_Name)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE cities
+ALTER TABLE CITIES
 	ADD CONSTRAINT Cities_super_fk
-		FOREIGN KEY (Planet_name) REFERENCES Planet(Planet_Name)
+		FOREIGN KEY (Planet_Name) REFERENCES PLANET(Planet_Name)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 
-ALTER TABLE droid
+ALTER TABLE DROID
 	ADD CONSTRAINT Droid_super_fk
-		FOREIGN KEY (Racer_Bid) REFERENCES Racer(Bid)
+		FOREIGN KEY (Racer_Bid) REFERENCES RACER(Bid)
 			ON DELETE RESTRICT
 			ON UPDATE CASCADE;
 

@@ -1,0 +1,4 @@
+- change the DROID NUMBER datatype from int to varchar 
+  - using altar table?
+- population of the planet is a varchar to int
+  - use alter table?
